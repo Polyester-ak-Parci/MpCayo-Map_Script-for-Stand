@@ -140,7 +140,12 @@ end)
 util.create_tick_handler(function()
     if cayoActive and memory.read_byte(memory.script_global(2697663)) ~= 0 then
         memory.write_byte(memory.script_global(1956028), 1)
-        memory.write_byte(memory.script_global(1942781 + 544), 1) 
+        
+        if WEAPON.GET_SELECTED_PED_WEAPON(players.user_ped()) ~= util.joaat("weapon_heavysniper_mk2") then
+            memory.write_byte(memory.script_global(1942781 + 544), 1)
+        else
+            memory.write_byte(memory.script_global(1942781 + 544), 0)
+        end
 
         local spPos = players.get_position(players.user())
         if MISC.GET_DISTANCE_BETWEEN_COORDS(5017.4224, -5130.4478, 2.19928, spPos.x, spPos.y, spPos.z, false) >= 2100 then
